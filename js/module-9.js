@@ -6,6 +6,8 @@ const par1 = document.createElement("p");
 par1.textContent = " у JSON зберігаються числа, рядки, масиви, а також спеціальне значення"
 document.body.append(par1);
 
+
+
 const par2 = document.createElement("p");
 par2.textContent = "Ключі — це завжди рядки, обов'язково в подвійних лапках.Значення рядків — також обов'язково в подвійних лапках.Числа можуть бути цілими або десятковими, з десятковою крапкою або без неї, включаючи негативні.Числа та булеві значення true і false записуються так само, як у JavaScript.У JSON немає коми після останньої властивості об'єкта.Значення властивостей може бути спеціальним значенням null, але не може бути undefined.Функції не можна зберігати у JSON, оскільки JSON передбачений лише для даних, а не для методів обробки даних."
 document.body.append(par2);
@@ -95,7 +97,7 @@ console.log(json1); // '{"name":"Mango","age":3,"isGoodBoy":true}'
 
 
 
-const json2 = JSON.stringify(() => console.log("Well, this is awkward")); 
+const json2 = JSON.stringify(() => console.log("Well, this is awkward"));
 console.log(json2); // undefined
 
 // Що буде з методами об'єкта при спробі перетворити його у json?
@@ -292,7 +294,7 @@ console.log(localStorage.getItem("ui-theme")); // null
 localStorage.setItem("ui-theme", "light");
 localStorage.setItem("notif-level", "mute");
 
-console.log(localStorage); 
+console.log(localStorage);
 // Storage {notif-level: 'mute', ui-theme: 'light', length: 2}
 
 
@@ -417,7 +419,7 @@ console.log("збереження, одержання, видалення, ви�
 
 localStorage.setItem("name", "Alice");
 
- 
+
 const LS_KEY = "Array of names";
 const names = ["Alice", "Kate", "Emma"];
 
