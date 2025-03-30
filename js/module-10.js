@@ -1,3 +1,42 @@
+console.log("Асинхронність//Асинхронні операції");
+console.log("=================================");
+console.log("синхронний код");
+
+console.log("First log");
+console.log("Second log");
+console.log("Third log");
+
+console.log("=================================");
+
+console.log("асинхронний код");
+
+// console.log("First log");
+
+// setTimeout(() => {
+//     // Виконується третьою, через 2000 мілісекунд (2 секунди)
+//     console.log("Second log");
+// }, 2000);
+
+// // Виконується другою
+// console.log("Third log");
+
+const startBtn = document.querySelector(".js-start");
+const stopBtn = document.querySelector(".js-stop");
+let intervalIds = [];
+
+startBtn.addEventListener("click", () => {
+    const intervalId = setInterval(() => {
+        console.log(`Interval ID: ${intervalId}, ${Math.random()}`);
+    }, 1000);
+    intervalIds.push(intervalId);
+});
+
+stopBtn.addEventListener("click", () => {
+    intervalIds.forEach(id => clearInterval(id));
+    console.log(`All intervals stopped: ${intervalIds.join(", ")}`);
+    intervalIds = []; // Очищаємо масив після зупинки всіх інтервалів
+});
+
 
 
 const title = document.createElement("h1");
@@ -65,7 +104,7 @@ console.log(startTime);
 
 
 // Твій код, виконуваний упродовж деякого часу
-for (let i = 0; i <= 100; i += 1) {
+for (let i = 0; i <= 25; i += 1) {
     console.log(i);
 }
 
@@ -723,3 +762,30 @@ new Promise((resolve, reject) => {
 })
     .then(value => console.log(value))
     .catch(error => console.log(error)); // "Rejected C"
+
+//========================================//
+
+console.log("Обробка множинних промісів/==/Метод Promise.all()");
+
+// Є ситуації, коли потрібно чекати на виконання всіх промісів одночасно, а потім обробляти їх результати.Або ситуації, коли достатньо дочекатися виконання хоча б одного з них, ігноруючи інші випадки.Для цих сценаріїв клас Promise має статичні методи для роботи з групою промісів.
+
+// Метод Promise.all() дозволяє одночасно обробити кілька промісів та отримати їхні результати.Він приймає масив промісів як вхідні дані, чекає їх виконання та повертає один проміс.
+
+console.log("Promise.all([promise1, promise2, promise3, ...])");
+
+
+// Якщо всі проміси виконуються успішно, повернений проміс перейде у стан fulfilled, а його значенням буде масив результатів виконання кожного промісу.
+
+
+
+const p1 = Promise.resolve(1);
+const p2 = Promise.resolve(2);
+const p3 = Promise.resolve(3);
+
+Promise.all([p1, p2, p3])
+    .then(values => console.log(values))// [1, 2, 3]
+    .catch(error => console.log(error));
+
+
+
+// Це означає, що він чекає на виконання всіх промісів, а потім створює та повертає новий проміс, значенням якого є масив значень виконаних промісів.
