@@ -1,0 +1,15 @@
+h1 {
+  color: purple;
+  background-color: aqua;
+}
+
+.obj {
+  font-weight: 500;
+  color: blue;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
