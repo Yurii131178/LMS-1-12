@@ -1,29 +1,10 @@
-// const lalala = new Promise((resolve, reject) => {
-//     const random = Math.random();
-//     setTimeout(() => {
-//         if (random > 0.5) {
-//             resolve("ok");
-//         }
-//             reject("oops");
-
-//     }, 1500);
-// })
-
-// console.log(lalala);
+const title = document.createElement("h1");
+title.textContent = "Module-11";
+document.body.append(title);
 
 
-// lalala
-//     .then((value) => {
-//         console.log("then", value);
-//     })
-//     .catch(error => console.log("catch", error))
-//     .finally(() => {
-//         console.log("finally");
-//     })
 
-// лагцюжки промісів //
 
-//
 
 const promise = new Promise((resolve) => {
     resolve(10);
