@@ -13,3 +13,120 @@ ul {
   padding: 0;
   margin: 0;
 }
+
+
+/* Remove default list styling */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item input[type="checkbox"] {
+  /* Remove default checkbox appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Create a custom checkbox */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.list-item input[type="checkbox"]:checked {
+  /* Background color when checked */
+  background-color: #2196f3; /* Blue background */
+  border-color: #2196f3; /* Blue border */
+}
+
+/* Стиль для галочки */
+.list-item input[type="checkbox"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 33%;
+  left: 50%; /* Змінено з 30% на 50% */
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 8px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+}
+
+.user.email {
+  color: blue;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.list {
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+  color: #2a2a2a;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  width: 288px;
+}
+
+.card-text {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.card-img-top {
+  display: flex;
+  justify-content: center;
+}
+
+.search-form {
+  padding: 10px;
+}
+
+.card {
+  margin: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+.list-item {
+  display: flex;
+}
+
+.list-item input {
+  margin-right: 10px;
+}
+.list-item p {
+  margin: 3px 0;
+}
+

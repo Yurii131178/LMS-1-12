@@ -57,36 +57,40 @@
 //////////////////////////////////////////////////////////////////////////////
 
 //lesson 21 DK//
-// const container1 = document.querySelector(".todo-list");
+const container = document.querySelector(".todo-list");
 
 // const params = new URLSearchParams({
 //     _limit: 7,
 //     _page: 5
 // })
 
-// fetch(`https://jsonplaceholder.typicode.com/todos?${params}`)
-//     .then(response => {
-//         if (!response.ok) {
-//             throw new Error(response.status);
-//         }
-//         return response.json()
-//     })
-//     .then(data => {
-//         container.insertAdjacentHTML("beforeend", createMarkup(data))
-//     })
-//     .catch(error =>  {
-//         console.log("catch", error);
-//     })
+// ?${params}
 
-// function createMarkup(arr) {
-//     return arr.map(({ title, completed }) => `
-//     <li class="list-item">
-//     <input type="checkbox" ${completed && "checked"}/>
-//     <p>${title}</p>
-//     </li>
-//     `).join("")
+fetch(`https://jsonplaceholder.typicode.com/todos`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
+        return response.json()
+    })
+    .then(data => {
+        console.log(data);
+        
+        container.insertAdjacentHTML("beforeend", createMarkup(data))
+    })
+    .catch(error =>  {
+        console.log("catch", error);
+    })
 
-// }
+function createMarkup(arr) {
+    return arr.map(({ title, completed }) => `
+    <li class="list-item">
+    <input type="checkbox" ${completed && "checked"}/>
+    <p>${title}</p>
+    </li>
+    `).join("")
+
+}
 
 // // const container1 = document.querySelector(".user-list");
 
@@ -208,50 +212,50 @@
 // у функцію
 
 //=======================================================================================
-function foo(url) {
-  return fetch(url).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response.json();
-  });
-}
+// function foo(url) {
+//   return fetch(url).then((response) => {
+//     if (!response.ok) {
+//       throw new Error(response.status);
+//     }
+//     return response.json();
+//   });
+// }
 // ========================================================================================
-foo("https://jsonplaceholder.typicode.com/todos?_limit=10") // todos: перших десять справ
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// foo("https://jsonplaceholder.typicode.com/todos?_limit=10") // todos: перших десять справ
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 // ========================================================================================
-foo("https://jsonplaceholder.typicode.com/users?_limit=5") // users: перших п'ять юзерів
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// foo("https://jsonplaceholder.typicode.com/users?_limit=5") // users: перших п'ять юзерів
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 
 //=======================================================================================
-foo("https://jsonplaceholder.typicode.com/posts?_limit=5") // users: перших п'ять юзерів
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// foo("https://jsonplaceholder.typicode.com/posts?_limit=5") // users: перших п'ять юзерів
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 // //=======================================================================================
 
-foo("https://jsonplaceholder.typicode.com/photos?_limit=5") // users: перших п'ять фоток
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// foo("https://jsonplaceholder.typicode.com/photos?_limit=5") // users: перших п'ять фоток
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 /////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE 11_L_21 DMYTRO KISLITSYN
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\//
@@ -259,44 +263,44 @@ foo("https://jsonplaceholder.typicode.com/photos?_limit=5") // users: перши
 // МИ МОЖЕМО ДО HTTP-ЗАПИТУ (URL рядка) додавати додаткові параметри через "?" і "&". ттакож можна винетси в оерему змінну: params 
 // ЦЕ ЗРУЧНО, КОЛИ ПАРАМЕТРІВ ДЕКІЛЬКА І ЇХ ТРЕБА ВИНЕСТИ ОКРЕМО, ЩОБ ПОЛЕГШИТИ КОД!!!//
 
+//================================================================= PIXABAY======================= //
+// const API_KEY_1 = "49632917-f700970c30bc9937fd82e83ee"; 
 
-const API_KEY_1 = "49632917-f700970c30bc9937fd82e83ee"; 
-
-const container = document.querySelector(".list");
-
-
-
-const params1 = new URLSearchParams({
-    key: API_KEY_1,
-    q: "cars",
-    image_type: "photo",
-    per_page: 8 // Обмеження кількості результатів
-
-})
+// const container = document.querySelector(".list");
 
 
-fetch(`https://pixabay.com/api/?${params1}`)
-    .then(data => {
-        if(!data.ok) {
-            throw new Error(data.statusText)
-        }
-        return data.json()
-    })
-    .then(data => { 
-        console.log(data);
+
+// const params1 = new URLSearchParams({
+//     key: API_KEY_1,
+//     q: "cars",
+//     image_type: "photo",
+//     per_page: 8 // Обмеження кількості результатів
+
+// })
+
+
+// fetch(`https://pixabay.com/api/?${params1}`)
+//     .then(data => {
+//         if(!data.ok) {
+//             throw new Error(data.statusText)
+//         }
+//         return data.json()
+//     })
+//     .then(data => { 
+//         console.log(data);
         
-       container.insertAdjacentHTML("beforeend", createMarkup1(data.hits));
-    })
-    .catch(error => console.log(error))
+//        container.insertAdjacentHTML("beforeend", createMarkup1(data.hits));
+//     })
+//     .catch(error => console.log(error))
 
-function createMarkup1(arr) {
-    return arr.map(({id, previewURL, tags})  => `
-    <li data-id="${id}">
-        <img src="${previewURL}" alt="${tags}" width="100" />        
-    </li>
-    `).join("")
-}   
-
+// function createMarkup1(arr) {
+//     return arr.map(({id, previewURL, tags})  => `
+//     <li data-id="${id}">
+//         <img src="${previewURL}" alt="${tags}" width="100" />        
+//     </li>
+//     `).join("")
+// }   
+//==============================================================================================
 // Потрібно створити функціонал для отримання прогнозу погоди в місті.
 // Використай публічне API https://www.weatherapi.com/docs/
 // Використовуй ендпоінт Forecast для того, щоб отримати прогноз погоди на декілька днів.
@@ -317,62 +321,62 @@ function createMarkup1(arr) {
 
 //----------------------------------------------------------------------------------------------//
 
-const BASE_URL = "http://api.weatherapi.com/v1";
-const API_KEY = "f822f03d1ff54b2ca9b153523250204";
+// const BASE_URL = "http://api.weatherapi.com/v1";
+// const API_KEY = "f822f03d1ff54b2ca9b153523250204";
 
 
-const searchForm = document.querySelector(".js-search-form");
-const conatiner = document.querySelector(".js-list");
+// const searchForm = document.querySelector(".js-search-form");
+// const conatiner = document.querySelector(".js-list");
 
-searchForm.addEventListener("submit", handleSearch);
+// searchForm.addEventListener("submit", handleSearch);
 
-function handleSearch(event) {
-    event.preventDefault();    
+// function handleSearch(event) {
+//     event.preventDefault();    
 
-    const { city, days } = event.currentTarget.elements;
+//     const { city, days } = event.currentTarget.elements;
 
-    // console.log(city.value);
-    // console.log(days);
+//     // console.log(city.value);
+//     // console.log(days);
   
-    const cityValue = city.value.trim(); // бототьба з пробілами 
+//     const cityValue = city.value.trim(); // бототьба з пробілами 
 
-    serviceWeather(city.value, days.value)
-        .then(data => {
-            console.log(data)
-            conatiner.innerHTML = createMarkup(data.forecast.forecastday);
-        })
-        .catch(error => {
-            conatiner.innerHTML = `<li><p>${error.message}</p></li>`
-        })
-        .finally(() => event.target.reset())
+//     serviceWeather(city.value, days.value)
+//         .then(data => {
+//             console.log(data)
+//             conatiner.innerHTML = createMarkup(data.forecast.forecastday);
+//         })
+//         .catch(error => {
+//             conatiner.innerHTML = `<li><p>${error.message}</p></li>`
+//         })
+//         .finally(() => event.target.reset())
     
-}
+// }
 
-function serviceWeather(city = "", days = 1) {
-    const params = new URLSearchParams({
-        key: API_KEY,
-        q: city,
-        days,
-        lang: "uk"
-    })
+// function serviceWeather(city = "", days = 1) {
+//     const params = new URLSearchParams({
+//         key: API_KEY,
+//         q: city,
+//         days,
+//         lang: "uk"
+//     })
 
-    return fetch(`http://api.weatherapi.com/v1/forecast.json?${params}`)
-        .then(response => {
-            if(!response.ok) {
-                throw new Error(response.statusText)
-            }
+//     return fetch(`http://api.weatherapi.com/v1/forecast.json?${params}`)
+//         .then(response => {
+//             if(!response.ok) {
+//                 throw new Error(response.statusText)
+//             }
 
-            return response.json();
-        })
-}
+//             return response.json();
+//         })
+// }
 
-function createMarkup(arr) {
-    return arr.map(({ date, day: { avgtemp_c, condition: { text, icon }}}) => `
-        <li class="weather-card">
-            <img src="${icon}" alt="${text}" class="weather-icon"/>
-            <h2 class="weather-date">${date}</h2>
-            <h3 class="weather-text">${text}</h3>
-            <p class="temperature">${avgtemp_c}</p>
-        </li>
-    `).join("")
-}
+// function createMarkup(arr) {
+//     return arr.map(({ date, day: { avgtemp_c, condition: { text, icon }}}) => `
+//         <li class="weather-card">
+//             <img src="${icon}" alt="${text}" class="weather-icon"/>
+//             <h2 class="weather-date">${date}</h2>
+//             <h3 class="weather-text">${text}</h3>
+//             <p class="temperature">${avgtemp_c}</p>
+//         </li>
+//     `).join("")
+// }
