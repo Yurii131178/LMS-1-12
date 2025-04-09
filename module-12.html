@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/module-12.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Module-12</title>
+  </head>
+  <body>
+    <div classs="Async">
+      <h1>MODULE-12</h1>
+      <ul>
+        <li>
+          <p>Будь-яка функція може бути асинхронною, якщо перед її оголошенням додати ключове слово <span class="hl">async</span>.
+
+
+
+
+            Для оголошення асинхронної функції перед ключовим словом <span class="hl">function</span> додається <span class="hl">async</span></p>
+        </li>
+        <li>
+          <p style="color: red;">async function fetchData() {
+            // ...
+          }</p>
+        </li>
+        <li>
+          <p>У функціональному виразі також перед ключовим словом <span class="hl">function</span> додається <span class="hl">async</span>.
+
+            </p>
+        </li>
+        <li>
+          <p style="color: red;">const fetchData = async function() {
+            // ...
+          }</p>
+        </li>
+        <li>
+          <p>Для оголошення асинхронної <span class="hl">стрілкової функції</span> перед списком параметрів додається ключове слово <span class="hl">async</span>.</p>
+        </li>
+        <li>
+          <p style="color: red;">const fetchData = async () => {
+            // ...
+          }</p>
+        </li>
+        <li>
+          <p>Для оголошення асинхронного методу об'єкта <span class="hl">async</span> додається перед іменем методу.
+
+            </p>
+        </li>
+        <li>
+          <p style="color: red;">const user = {
+            async getUsername() {
+              // ...
+            },
+          };</p>
+        </li>
+        <li>
+          <p>Для оголошення асинхронного методу класу також використовується <span class="hl">async</span> перед іменем методу.
+
+            </p>
+        </li>
+        <li>
+          <p style="color: red;">class User {
+            async getUsername() {
+              // ...
+            }
+          }</p>
+        </li>
+        <li>
+          <p>Асинхронні функції дозволяють працювати з <span class="hl">await</span>, що робить код чистішим та легшим для розуміння, усуваючи необхідність у вкладених <span class="hl">.then()</span>.</p>
+        </li>
+      </ul>
+    </div>
+    <br>
+    <div>
+      <button type="button" class="btn">Fetch posts</button>
+      <button type="button" class="btn1">Fetch1 posts</button>
+<ul class="posts"></ul>
+      <ul>
+        <li>
+          <p><b>Pagination</b></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+
+
+    
+    <script src="./js/module-12.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+
+
+/* Базові налаштування для всього документа */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 20px;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+/* Посилання */
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Кнопки */
+button {
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Форма */
+input, textarea, select {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+/* Контейнер */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Прості стилі для зображень */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 0.5em; /* необов'язково: для відступів між пунктами */
+}
+
+h1 {
+  color: purple;
+  background-color: aqua;
+}
+p {
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.hl {
+  background-color: #e0f7ff;
+  color: #007BFF;
+  font-weight: bold;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+
+.posts {
+  margin: 0;
+  margin-top: 24px;
+  list-style: none;
+}
+
+.posts li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.post-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.post-title:first-letter {
+  text-transform: uppercase;
+}
