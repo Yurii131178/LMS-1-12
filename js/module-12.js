@@ -141,3 +141,6 @@ function renderPosts(posts) {
   postList.innerHTML = markup;
 }
 
+//-------------------dmytro kislitsyn--------------------------//
+
+
