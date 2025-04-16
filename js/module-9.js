@@ -1,3 +1,10 @@
+console.log(window);
+
+
+
+
+
+
 const title = document.createElement("h1");
 title.textContent = "Module-9";
 document.body.append(title);
@@ -136,7 +143,7 @@ const dog2 = JSON.parse(json3);
 console.log(dog2); // {name: "Mango", age: 3, isGoodBoy: true}
 console.log(dog2.name); // "Mango"
 
-console.log("Обробка помилок");
+console.log("-------------Обробка помилок-------------------");
 
 
 // Обробка помилок
@@ -299,7 +306,7 @@ console.log(localStorage);
 
 
 // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
-console.log("// localStorage.clear(); // !!!БУДБТК=Е УВАЖНІ!!!Навіть якщо localStorage.clear() є раніше в коді, він впливає на виконання подальшої логіки, бо очищає localStorage до того, як ви намагаєтеся отримати дані. Видаляючи його, усе працює коректно.");
+console.log("// localStorage.clear(); // !!!БУДБТУ УВАЖНІ!!!Навіть якщо localStorage.clear() є раніше в коді, він впливає на виконання подальшої логіки, БО очищає localStorage до того, як ви намагаєтеся отримати дані. Видаляючи його, все працює коректно.");
 
 console.log(localStorage); // Storage {length: 0}
 // ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
@@ -329,9 +336,114 @@ console.log(tickets); // { from: "Lviv", to: "Kyiv", quantity: 2 }
 //   <button type="submit">Send feedback</button>
 // </form>
 
-// Під час сабміту форми будемо виводити в консоль значення текстового поля та очищати форму.
+// // Під час сабміту форми будемо виводити в консоль значення текстового поля та очищати форму.
+
+// const STORAGE_KEY = "feedback-msg";
 
 // const form = document.querySelector(".feedback-form");
+// const textArea = form.querySelector("textarea");
+
+// form.addEventListener("submit", handleSubmit);
+
+// populateTextarea();
+
+// function handleInput(event) {
+//   const message = event.target.value; 
+//   console.log(message);
+  
+ 
+//   localStorage.setItem(STORAGE_KEY, message);
+// }
+
+
+// ;// вішаємо слухача на textArea через подію "input" та ф-ю handleInput. Напишемо функцію. Оскільки вона передається як колбек в addEventListener, вона буде приймати обєкт події, який прийнято називати event. Ми з цього івенту можемо витягти значення яке ввів користувач
+// // input - це інтерактивне поле, з яким взаємодіє юзер, він вводить дані. event.target: динамічно вказує на елемент, з яким взаємодіє користувач, і event.target.value бере його поточне значення. Це універсально для будь-якого поля вводу.
+// //кладемо в локал сторедж
+//  // але при перезавантаженні сторінки ми дані втрачаємо!!!
+// // створимо ще функцію
+// function populateTextarea() {
+//   const savedMessage = localStorage.getItem(STORAGE_KEY);
+  
+//   console.log(savedMessage);
+//   // викличемо нашу ф-ю populateTextarea() вгорі, після textArea.addEventListener("input", handleInput); !!! див вгору.
+// // якщо lS порожній - отримаємо "null"
+// // Давайте зробимо перевірку: якщо значення є - будемо щось робити, якщо немає - тоді нічого не робимо.
+
+//   if (savedMessage) {
+//   textArea.value = savedMessage;// якщо тут не буде значення, ми отримаємо null і не попадемо в нашу функцію. звертаємось до нашого textArea.value і зберігає дані, які ми витягли з localStorage.
+   
+//  }
+// }  
+// // Але тепер, коли користувач надішле відгук, форма все одно міститеме наьраний ним текст. Це не норм!!!
+
+// function handleSubmit(event) {
+//   event.preventDefault();// припиняємо дефолтну поведінку форми при завантаженні// треба скинути нашу форму 
+
+//   event.currentTarget.reset(); // скине дані в нашій формі, але... в localStorage дані залишились. тому, паралельно зі скиданням форми треба очистити наше локальне сховище
+//   localStorage.removeItem(STORAGE_KEY);
+// }
+
+//////////////////////////////////////////////////////////////
+const STORAGE_KEY = "feedback-msg";
+
+// Отримуємо посилання на форму і текстове поле
+const form = document.querySelector(".feedback-form");
+const textArea = form.querySelector("textarea");
+// тут можна звернутись або через document.querySelector або до кнткретного елементу форми: form.querySelector
+
+// Додаємо слухачі подій
+textArea.addEventListener("input", handleInput);
+form.addEventListener("submit", handleSubmit);
+
+// Підставляємо збережене повідомлення (якщо є) в поле тексту
+populateTextarea();
+
+function handleInput(event) {
+  const message = event.target.value;
+  localStorage.setItem(STORAGE_KEY, message); // Зберігаємо в localStorage
+}
+
+function populateTextarea() {
+  const savedMessage = localStorage.getItem(STORAGE_KEY);
+
+  if (savedMessage) {
+    textArea.value = savedMessage; // Вставляємо текст, якщо він збережений
+  }
+}
+
+function handleSubmit(event) {
+  event.preventDefault(); // Зупиняємо перезавантаження сторінки
+
+  form.reset(); // Скидаємо форму
+  localStorage.removeItem(STORAGE_KEY); // Видаляємо збережені дані
+}
+
+
+
+//////////////////////
+
+const jojoba = document.querySelector("feedback-form");
+
+jojoba.addEventListener("click", addNewJojoba);
+
+function addNewJojoba() {
+  if (jojoba > 1) {
+    return true;
+  } else {
+    console.log(error);
+    
+  }
+
+
+}
+  
+
+
+
+
+
+
+
 
 // form.addEventListener("submit", evt => {
 //   evt.preventDefault();
@@ -391,25 +503,25 @@ console.log(tickets); // { from: "Lviv", to: "Kyiv", quantity: 2 }
 
 
 
-const form = document.querySelector(".feedback-form");
-const textarea = form.elements.message; // form.elements.message – Найзручніший і найкоротший спосіб, якщо textarea має name="message".
-// ✔ form.elements — це швидкий спосіб отримати елементи форми за їхнім атрибутом name.
-// ✔ Якщо name немає, доведеться використовувати querySelector, getElementsByTagName або інші методи.
-//form.querySelector("textarea") – Використання CSS-селектора для пошуку першого <textarea>, Якщо у вашій формі є лише один <textarea>!!!
-const localStorageKey = "goit-example-message";
+// const form = document.querySelector(".feedback-form");
+// const textarea = form.elements.message; // form.elements.message – Найзручніший і найкоротший спосіб, якщо textarea має name="message".
+// // ✔ form.elements — це швидкий спосіб отримати елементи форми за їхнім атрибутом name.
+// // ✔ Якщо name немає, доведеться використовувати querySelector, getElementsByTagName або інші методи.
+// //form.querySelector("textarea") – Використання CSS-селектора для пошуку першого <textarea>, Якщо у вашій формі є лише один <textarea>!!!
+// const localStorageKey = "goit-example-message";
 
-textarea.value = localStorage.getItem(localStorageKey) ?? "";
+// textarea.value = localStorage.getItem(localStorageKey) ?? "";
 
-form.addEventListener("input", (evt) => {
-  localStorage.setItem(localStorageKey, evt.target.value);
-});
+// form.addEventListener("input", (evt) => {
+//   localStorage.setItem(localStorageKey, evt.target.value);
+// });
 
-form.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  console.log(evt.target.elements.message.value);
-  localStorage.removeItem(localStorageKey);
-  form.reset();
-});
+// form.addEventListener("submit", (evt) => {
+//   evt.preventDefault();
+//   console.log(evt.target.elements.message.value);
+//   localStorage.removeItem(localStorageKey);
+//   form.reset();
+// });
 
 
 console.log("MODULE-9.LESSON-17 DMYTRO_K");

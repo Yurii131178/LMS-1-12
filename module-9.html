@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,19 @@
   </head>
   <body>
     <form class="feedback-form">
-      <textarea name="message"></textarea>
+      <label>
+        <b>Name</b>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter Your name"
+          value="Anonimous"
+        />
+      </label>
+      <label>
+        <b>Message</b>
+        <textarea name="message" rows="6"></textarea>
+      </label>
       <button type="submit">Send feedback</button>
     </form>
     <script src="./js/module-9.js"></script>
