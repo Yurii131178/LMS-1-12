@@ -2,7 +2,7 @@ console.log("Асинхронність//Асинхронні операції")
 console.log("=================================");
 console.log("синхронний код");
 
-console.log("First log");
+console.log("First log"); // синхронний код, йдуть логи послідовно, один за одним  
 console.log("Second log");
 console.log("Third log");
 
@@ -10,6 +10,9 @@ console.log("=================================");
 
 console.log("асинхронний код");
 
+
+// метод setTimeout() {приймає 2 аргументи: КБФ,  час в мілісекундах. Він виконає кбф через 2000 мс.}
+  
 // console.log("First log");
 
 // setTimeout(() => {
@@ -19,6 +22,43 @@ console.log("асинхронний код");
 
 // // Виконується другою
 // console.log("Third log");
+
+
+// наш потік не завмер, і не чекав на виконання second log, відкладено запустив кбф і ми побачили її  результат
+
+/////////////////////////////////////////////////////////
+
+//Очищення таймаута
+//Скасування тайм-ауту
+// Якщо з якихось причин нам потрібно скасувати відкладений виклик функції, зареєстрованої тайм-аутом, використовується метод clearTimeout(id).
+// Метод clearTimeout(id)приймає ідентифікатор таймера та “очищає його”, тобто видаляє реєстрацію відкладеного виклику функції з черги.
+// У прикладі вище ми викликали clearTimeout(), який виконається раніше, ніж буде викликана функція greet(). Отже, таймер з timerId буде видалений і реєстрація відкладеного виклику greet() скасується. Тому в консоль нічого не виведеться.
+
+console.log("==============Codepen================");
+
+const setBtn = document.querySelector(".js-set");
+const clearBtn = document.querySelector(".js-clear");
+let timeoutId;
+
+setBtn.addEventListener("click", () => {
+  timeoutId = setTimeout(() => {
+    console.log("I love async JS!");
+  }, 2000);
+});
+
+clearBtn.addEventListener("click", () => {
+  clearTimeout(timeoutId);
+  console.log(`Timeout with id ${timeoutId} has stopped!`);
+});
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// kahoot задачка //
+
+for (let i = 3; i > 0; i--) {
+    const delay = i * 4000;
+    setTimeout(() => console.log(i), delay); // logs 3, 2, 1 with delays
+}
 
 const startBtn = document.querySelector(".js-start");
 const stopBtn = document.querySelector(".js-stop");
