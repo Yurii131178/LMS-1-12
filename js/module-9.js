@@ -328,6 +328,8 @@ const tickets = JSON.parse(sessionStorage.getItem("tickets"));
 console.log(tickets); // { from: "Lviv", to: "Kyiv", quantity: 2 }
 //===========================================================================//
 
+
+////////////////////////////////////////////////////////////////////////////////////////
 // Кейс: Форма з повідомленням
 // Створимо форму для введення повідомлення.
 
@@ -422,20 +424,20 @@ function handleSubmit(event) {
 
 //////////////////////
 
-const jojoba = document.querySelector("feedback-form");
+// const jojoba = document.querySelector("feedback-form");
 
-jojoba.addEventListener("click", addNewJojoba);
+// jojoba.addEventListener("click", addNewJojoba);
 
-function addNewJojoba() {
-  if (jojoba > 1) {
-    return true;
-  } else {
-    console.log(error);
+// function addNewJojoba() {
+//   if (jojoba > 1) {
+//     return true;
+//   } else {
+//     console.log(error);
     
-  }
+//   }
 
 
-}
+// }
   
 
 
