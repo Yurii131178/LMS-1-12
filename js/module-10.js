@@ -60,7 +60,9 @@ for (let i = 3; i > 0; i--) {
     setTimeout(() => console.log(i), delay); // logs 3, 2, 1 with delays
 }
 
-const startBtn = document.querySelector(".js-start");
+////////////////////////////////////////////////////////////////////////////////////////
+
+ const startBtn = document.querySelector(".js-start");
 const stopBtn = document.querySelector(".js-stop");
 let intervalIds = [];
 
@@ -78,7 +80,7 @@ stopBtn.addEventListener("click", () => {
 });
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 const title = document.createElement("h1");
 title.textContent = "Module-10";
 document.body.append(title);
@@ -118,11 +120,10 @@ console.log("Unix час");
 // Для комп’ютерів відлік часу рахується в мілісекундах, що минули після опівночі 1 січня 1970 року в часовому поясі UTC(Coordinated Universal Time).Це — Unix час.
 // Під час ініціалізації дати одним числом, воно являє собою кількість мілісекунд, що вже минула з 01.01.1970.
 
-console.log(new Date(0));
+console.log(new Date(0)); //початок епохи Unix.
 // "Thu Jan 01 1970 03:00:00 GMT+0300 (Eastern European Standard Time)"
 
-console.log(new Date(15000));
-// "Thu Jan 01 1970 03:00:15 GMT+0300 (Eastern European Standard Time)"
+console.log(new Date(15000)); //  15 секунд після цієї епохи."Thu Jan 01 1970 03:00:15 GMT+0300 (Eastern European Standard Time)"
 
 
 //Вбудований метод getTime() повертає числове значення цієї дати (timestamp) — кількість мілісекунд, що минула з півночі 1 січня 1970 року.
@@ -142,18 +143,12 @@ console.log(time);
 const startTime = Date.now();
 console.log(startTime);
 
+setTimeout(() => {
+    const endTime = Date.now();
+    const elapsedTime = endTime - startTime;
 
-// Твій код, виконуваний упродовж деякого часу
-for (let i = 0; i <= 25; i += 1) {
-    console.log(i);
-}
-
-const endTime = Date.now();
-console.log(endTime);
-
-const elapsedTime = endTime - startTime;
-
-console.log(`Elapsed time: ${elapsedTime} ms`);
+    console.log(`Elapsed time: ${elapsedTime} ms`);
+}, 3000)
 
 // Зберегти час до події.
 // Зберегти час після події.
@@ -165,32 +160,64 @@ console.log("Геттери і сеттери");
 
 // Геттери використовуються для читання всієї дати або окремої складової.Значення, що повертається, залежить від поточного часового поясу, встановленого на комп'ютері.
 
+console.log("аргументом в дужки можемо передавати різні дати");
+
 const date4 = new Date("March 16, 2030 14:25:00");
-console.log("Date: ", date);
+console.log("Date: ", date4);
 
 // Повертає день місяця від 1 до 31
-console.log("Day: ", date.getDate()); // 16
+console.log("Day: ", date4.getDate()); // 16
 
 // Повертає день тижня від 0 до 6, починається з неділі
-console.log("Day of the week: ", date.getDay()); // 6
+console.log("Day of the week: ", date4.getDay()); // 6
 
 // Повертає місяць від 0 до 11
-console.log("Month: ", date.getMonth()); // 2
+console.log("Month: ", date4.getMonth()); // 2
 
 // Повертає рік з 4 цифр
-console.log("Full year: ", date.getFullYear()); // 2030
+console.log("Full year: ", date4.getFullYear()); // 2030
 
 // Повертає години
-console.log("Hours: ", date.getHours()); // 14
+console.log("Hours: ", date4.getHours()); // 14
 
 // Повертає хвилини
-console.log("Minutes: ", date.getMinutes()); // 25
+console.log("Minutes: ", date4.getMinutes()); // 25
 
 // Повертає секунди
-console.log("Seconds: ", date.getSeconds()); // 0
+console.log("Seconds: ", date4.getSeconds()); // 0
 
 // Повертає мілісекунди
-console.log("Milliseconds: ", date.getMilliseconds()); // 0
+console.log("Milliseconds: ", date4.getMilliseconds()); // 0
+
+////////////////////////////////////////////////////////////
+
+console.log("порожні дужки - поточна інформація");
+const date5 = new Date();
+console.log("Date: ", date5);
+
+// Повертає день місяця від 1 до 31
+console.log("Day: ", date5.getDate()); // 16
+
+// Повертає день тижня від 0 до 6, починається з неділі
+console.log("Day of the week: ", date4.getDay()); // 6
+
+// Повертає місяць від 0 до 11
+console.log("Month: ", date5.getMonth()); // 2
+
+// Повертає рік з 4 цифр
+console.log("Full year: ", date5.getFullYear()); // 2030
+
+// Повертає години
+console.log("Hours: ", date5.getHours()); // 14
+
+// Повертає хвилини
+console.log("Minutes: ", date5.getMinutes()); // 25
+
+// Повертає секунди
+console.log("Seconds: ", date5.getSeconds()); // 0
+
+// Повертає мілісекунди
+console.log("Milliseconds: ", date5.getMilliseconds()); // 0
 
 console.log("---------------------------------------------");
 
