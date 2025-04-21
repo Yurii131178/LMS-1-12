@@ -1,7 +1,125 @@
-// const title = document.createElement("h1");
-// title.textContent = "Module-11";
-// document.body.append(title);
+const title = document.createElement("h1");
+title.textContent = "Module-11";
+document.body.append(title);
 
+console.log("LMS");
+
+//////////////////////////////////////////////
+// const fetchUsersBtn = document.querySelector(".btn");
+
+// fetchUsersBtn.addEventListener("click", () => {
+//   fetch("https://jsonplaceholder.typicode.com/users")
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error(response.status);
+//       }
+//       return response.json();
+//     })
+//     .then((users) => {
+//         // Дані від бекенда                      
+//         console.log(users);        
+// 		})
+//     .catch((error) => console.log(error));
+// });
+
+/////////////////////////////////////////////////
+// const fetchUsersBtn = document.querySelector(".btn");
+// const userList = document.querySelector(".user-list");
+
+// fetchUsersBtn.addEventListener("click", () => {
+//   fetch("https://jsonplaceholder.typicode.com/users")
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error(response.status);
+//       }
+//       return response.json();
+//     })
+//     .then((users) => {
+//       const markup = users.map((user) => {
+// 				return `<li>
+// 	          <p><b>Name</b>: ${user.name}</p>
+// 	          <p><b>Email</b>: ${user.email}</p>
+// 	          <p><b>Company</b>: ${user.company.name}</p>
+// 	          <p><b>id</b>: ${user.id}</p>
+// 	          <p><b>website</b>: ${user.website}</p>
+              
+// 	        </li>`;
+//         })
+//         .join("");
+
+// 		userList.insertAdjacentHTML("afterbegin", markup);
+//     })
+//     .catch((error) => console.log(error));
+// });
+
+
+
+
+////////////////////////////////////////////////
+const options = {
+    method: "GET"    
+};
+
+fetch("https://jsonplaceholder.typicode.com/users", options)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+    
+  })
+  .catch(error => {
+    console.log(error);
+    
+  });
+
+  ////////////////////////////////
+
+/**
+ * CODEPEN
+ */
+const fetchUsersBtn = document.querySelector(".btn");
+const userList = document.querySelector(".user-list");
+
+fetchUsersBtn.addEventListener("click", () => {
+  fetchUsers()
+    .then((users) => renderUsers(users))
+    .catch((error) => console.log(error));
+});
+
+function fetchUsers() {
+  return fetch("https://jsonplaceholder.typicode.com/users").then(
+    (response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    }
+  );
+}
+
+function renderUsers(users) {
+  const markup = users 
+    .map((user) => {
+      return `<li>
+          <p><b>Name</b>: ${user.name}</p>
+          <p><b>Email</b>: ${user.email}</p>
+          <p><b>Company</b>: ${user.company.name}</p>
+        </li>`;
+    })
+    .join("");
+  userList.insertAdjacentHTML("beforeend", markup);
+}
+
+
+
+
+
+
+//////////////////////////
 // const { Container } = require("postcss");
 
 // const promise = new Promise((resolve) => {
@@ -66,7 +184,7 @@ const container = document.querySelector(".todo-list");
 
 // ?${params}
 
-fetch(`https://jsonplaceholder.typicode.com/todos`)
+fetch(`https://jsonplaceholder.typicode.com/todos?_limit=12`)
     .then(response => {
         if (!response.ok) {
             throw new Error(response.status);

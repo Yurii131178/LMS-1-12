@@ -240,3 +240,18 @@ ul {
   color: #ff6600;
   font-weight: bold;
 }
+
+
+/* fetchinf data from api */
+
+
+
+.user-list1 {
+  margin: 0;
+  list-style: none;
+  padding: 24px;
+}
+
+.user-list1 li:not(:last-child) {
+  margin-bottom: 16px;
+}

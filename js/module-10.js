@@ -413,30 +413,30 @@ console.log("Ланцюжки промісів");
 console.log("============================================");
 
 
-// const promise5 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve(5);
-//     }, 2000);
-// });
+const promise5 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve(5);
+    }, 2000);
+});
 
-// promise5
-//     .then(value => {
-//         console.log(value); // 5
-//         return value * 2;
-//     })
-//     .then(value => {
-//         console.log(value); // 10
-//         return value * 3;
-//     })
-//     .then(value => {
-//         console.log(value); // 30
-//     })
-//     .catch(error => {
-//         console.log(error);
-//     })
-//     .finally(() => {
-//         console.log("finally==================");
-//     });
+promise5
+    .then(value => {
+        console.log(value); // 5
+        return value * 2;
+    })
+    .then(value => {
+        console.log(value); // 10
+        return value * 3;
+    })
+    .then(value => {
+        console.log(value); // 30
+    })
+    .catch(error => {
+        console.log(error);
+    })
+    .finally(() => {
+        console.log("finally==================");
+    });
 console.log("============================================");
 
 console.log("  //Промісифікація//  ");
@@ -618,7 +618,7 @@ console.log("// Промісифікація синхронних функцій
 
 // Виконаємо рефакторинг коду функції, яка приймає два колбеки та викликає їх за умовою.
 
-// const makeGreeting = (guestName, onSuccess, onError) => {
+// const makeGreeting0 = (guestName, onSuccess, onError) => {
 //     if (!guestName) {
 //         onError("Guest name must not be empty");
 //     } else {
@@ -626,7 +626,7 @@ console.log("// Промісифікація синхронних функцій
 //     }
 // };
 
-// makeGreeting(
+// makeGreeting0(
 //     "Mango",
 //     greeting => console.log(greeting),
 //     error => console.error(error)
@@ -651,7 +651,7 @@ console.log("// Промісифікація синхронних функцій
 
 // А тепер використаємо методи класу Promise, щоб скоротити кількість коду.
 
-const makeGreeting = guestName => {
+const makeGreeting1 = guestName => {
     if (!guestName) {
         return Promise.reject("Guest name must not be empty");
     } else {
@@ -659,7 +659,7 @@ const makeGreeting = guestName => {
     }
 };
 
-makeGreeting("Mango")
+makeGreeting1("Mango")
     .then(greeting => console.log(greeting))
     .catch(error => console.error(error));
 
@@ -856,3 +856,308 @@ Promise.all([p1, p2, p3])
 
 
 // Це означає, що він чекає на виконання всіх промісів, а потім створює та повертає новий проміс, значенням якого є масив значень виконаних промісів.
+
+console.log("Метод Promise.race()");
+// Метод Promise.race приймає масив промісів і повертає "найшвидший", тобто перший виконаний або відхилений проміс з переданих, разом зі значенням або причиною його відхилення.
+
+//Promise.race([promise1, promise2, promise3, ...])
+// Кейс 1
+//Створимо кілька промісів з різним часом виконання.
+
+
+
+const pr1 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("race-resolve-1-@1000"), 1000);
+});
+
+const pr2 = new Promise((resolve, reject) => {
+  setTimeout(() => reject(2), 2000);
+});
+
+Promise.race([pr1, pr2])
+	.then(value => console.log(value)) // 1
+	.catch(error => console.log(error))
+    
+// Перший проміс перейде в стан fulfilled через 1 секунду (буде найшвидшим), і буде виконано колбек методу then зі значенням першого промісу, а решту буде відкинуто.
+// Коли хоча б один проміс з масиву виконається, проміс, що повертається, перейде у стан resolved, а всі інші будуть відкинуті.
+
+// Кейс 2
+// Створимо кілька промісів з різним часом виконання.
+
+
+const pro1 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve(1), 2000);
+});
+
+const pro2 = new Promise((resolve, reject) => {
+  setTimeout(() => reject("race-reject-2-@1000"), 1000);
+});
+
+Promise.race([pro1, pro2])
+	.then(value => console.log(value)) 
+	.catch(error => console.log(error)) // 2
+
+
+
+// Другий проміс перейде в стан rejected через 1 секунду (буде найшвидшим), виконається колбек методу catch зі значенням другого промісу, а інші будуть відкинуті.
+
+
+
+// Коли хоча б один проміс із масиву буде відхилений, проміс, що повертається, перейде в стан rejected, а всі інші будуть відкинуті.
+
+console.log("********DMYTRO K- PROMIS-260325*********");
+
+/**
+ * створення та обробка промісу
+ * Клас Promise
+ * resolve
+ * reject
+ * then, catch, finally 
+ */
+
+const jojoba = new Promise((resolve, reject) => {
+    const random = Math.random();
+     
+    setTimeout(() => {
+        if(random > 0.5) {
+            resolve("ok");
+        } else {
+            reject("oops");
+        }
+
+    }, 1000)
+})
+
+console.log(jojoba);
+
+// ці два методи існують в промісі для того. щоб перевести його в якийсь завершених станів (fulfilled або rejected).
+
+// ми можемо скоротити наш код (вирізати else {}):
+
+const lalala = new Promise((resolve, reject) => {
+const random = Math.random();
+
+    setTimeout(() => {
+        if (random > 0.5) {
+            resolve("ok");
+        }
+        reject("oops");
+    }, 1000)
+})
+
+console.log(lalala);
+// в кострукції if() {}  немає слова return. Ми не повинні повертати нічого,тому що як тільки виконається наша функція resolve або reject, проміс одразу перейде або в стан fulfilled або стан rejected
+
+// Promise-Обіцянка каже тобі: я обіцяю, що щось поверну тобі, або один результат, або інший, але я не знаю, який з них і через який час. цуе може бути, сервер, інтернет аповільний і т.д. варантів маса по затримці
+
+
+// затримку виеористано, щоб злапати стан "pending"
+
+// методи then/catch як аргумент приймають в себе КБФ, і ця ф-я як параметр буде в себе отримувати дані, які ми передали в наші методи resolve(ok)/reject(oops).
+
+const tototo = new Promise((resolve, reject) => {
+const random = Math.random();   
+        if (random > 0.5) {
+            resolve("ok");
+        }
+        reject("oops");
+    })
+
+console.log(tototo);
+
+tototo
+    .then((result) => {
+        console.log("then", result);
+    })
+    .catch((error) => {
+        console.log("catch", error);         
+    })
+    
+// ці методи почнуть працювати, як тільки проміс перейде в один зі станів: fulfilled/rejected.
+
+// метод finally відпрацює завжди, йому байдуже, як завершиться проміс 
+
+    .finally(() => {
+        console.log("finally:", "I don't care)))");
+        
+
+    })
+
+/*
+* Промісифікація
+* проблема доступу до результату проміса з колбеком
+* функція, яка повертає проміс
+*/
+
+
+// створимо ф-ю, да парам.1 - рядок, парам.2 - ф-я, парам.3 - ф-я. в цій ф-ії буде стаорюватись якесь рандомне число і зімітуємо затраимку в 1000мс, я бкдемо перевіряти, при умові якщо рандом > 0.5 - це успіх, інше - помилка
+
+
+//                         кбф        кбф   
+const makeOrder = (dish, onSuccess, onError) => {
+    const random = Math.random();
+
+    setTimeout(() => {
+        if (random > 0.5) {
+            onSuccess(`Ваше замовлення: ${dish}`);
+            return;
+        } else {
+            onError(`Закінчились продукти`);
+        }
+
+    }, 1000)
+}
+// чкщо портапимо в if - ми виконаємо ф-ю onSuccess і припинимо роботу КБФ setTimeout, якщо не потрмпимо - виконаємо другу кбф (onEroor(`Закінсились продукти`))
+// викличемо ф-ю і передамо в неї аргументи
+
+makeOrder(
+    "Пиріжок",
+    (str) => console.log("onSuccess", str), // кбф
+    (str) => console.log("onError", str), // кбф
+)
+
+// особливість такого запиту в тому, що наша ф-я makeOrder окрім того, що створює якийсь результат, воно його ще й обробляє. ми використовуємо в ній певні ф-ії: onSuccess(`Ваше замовлення ${dish}`); Це може ускладнити читання коду, якщо колбеків буде багато.
+
+// Промісифікація дає можливість позбавитись цих кбф - onSuccess/onError, щоб наш makeOrder не оборобляв у себе в тілі успішний/неуспішний результат.
+
+// вона просто повертатиме проміс результатом, а обробляти його ми будемо за межами функції
+
+// зробимо те саме за допомогою промісів
+
+const makeOrder1 = (dish) => {
+    return new Promise((resolve, reject) => {
+
+        const random = Math.random();
+        
+        setTimeout(() => {
+            if (random > 0.5) {
+                // тепер ми, на відміну від попереднього випадку скажемо, що наш проміс завершиться успіхом
+                resolve(`Ваше замовлення: ${dish}`);                
+            }
+
+            reject(`Закінчились продукти`);
+
+        }, 1000)
+
+    })
+    
+}
+
+// В ЗМІННІЙ makeOrder  ЗБЕІГАЄТЬСЯ ФУНКЦІЯ!!!! (dish) => { ........... }, а результатом її виклику буде проміс
+
+
+makeOrder1(`Пиріжок`)
+    .then(result => console.log(result.toUpperCase()))
+    .catch(error => console.log(error))
+
+// тепер ми цей результат не обробляємо в тілі ф-ї makeOrder, а просто повертаємо з неї Promise (з результатом "Ваше замовлення: ${dish}" або "Закінчились продукти"), а вже обробляємо його за межами нашої ф-ї (н-д: toUpperCase, log  і т.д. Всі маніпуляції робимо за межами)
+
+// РІЗНИЦЯ:
+
+// 1. ОБРОБЛЯЄ УСПІШНЕ/НЕУСПІШНЕ ЗАВЕРШЕННЯ
+//    2. ПОВЕРТАЄ ЗНАЧЕННЯ, ЯКЕ ПОТІМ ОБРОБЛЯЄМО ЗА ДОПОМОГОЮ then/catch
+
+//=================================================================//
+
+/**
+ * ПРОМІСИФІКАЦІЯ "СИНХРОННИХ" ФУНКЦІЙ
+ * - Promise.resolve()
+ * - Promise.reject()
+ */
+
+// статичні методи використовуються коли треба  промісифікувати синхронни й код.
+
+// звичайний код 
+
+const makeOrder2 = (dish, onSuccess, onError) => {
+    const random = Math.random();
+
+    if (random > 0.5) {
+        onSuccess(`Ваше замовлення: ${dish}`);
+            return;
+    }
+    onError(`Закінчились продукти`);
+}
+
+makeOrder2(
+    "Пиріжок",
+    (str) => console.log("onSuccess", str), // кбф
+    (str) => console.log("onError", str), // кбф
+)
+
+
+
+const makeOrder3 = (dish, onSuccess, onError) => {
+    const random = Math.random();
+
+    // if (random > 0.5) {
+    //     return Promise.resolve(`Ваше замовлення: ${dish}`);
+    // }
+    // return Promise.reject(`Закінчились продукти`);
+
+    // або тернарник
+
+    return random > 0.5 ? 
+        Promise.resolve(`Ваше замовлення: ${dish}`) : 
+        Promise.reject(`Закінчились продукти`);        
+    
+}
+
+makeOrder3("Пиріжок")
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+
+
+
+// тут наша ф-я не використовує new Promise, а Promise.resolve/reject cтатичними методами. Тут обчислення відбувається не в колбеку, а просто у функції.Якщо успішне - припиняємо роботу і повертаємо проміс, і так само при неуспіху
+
+// це про варіативність.. обидва способи можливі
+
+//================Promise.all & Promise.race==================//
+
+const startTime1 = Date.now();
+const res1 = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const currenttime = Date.now();
+            const deltaTime = currenttime - startTime;
+            resolve({title: "first", time: deltaTime})
+
+        }, 3000)
+    })
+}
+
+const res2 = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const currenttime = Date.now();
+            const deltaTime = currenttime - startTime;
+            resolve({title: "second", time: deltaTime})
+
+        }, 1000)
+    })
+}
+
+const res3 = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const currenttime = Date.now();
+            const deltaTime = currenttime - startTime;
+            resolve({title: "third", time: deltaTime})
+
+        }, 6000)
+    })
+}
+// Promise.all отримує в себе масив результатів виклику функцій, тобто проміси  і чекає, поки всі проміси будуть виконані, і лише після цього  поверне результат їх роботи - масив промісів. потім, за допомогою  .then/.catch можемо їх обробити
+
+Promise.all([res1(), res2(), res3()])
+    .then(res => console.log(res))
+    .catch(error => console.log(error))
+    .finally(() => console.log("finally"))
+   // ми отримали всі дані завдяки цьому методу одночасно
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+ 
